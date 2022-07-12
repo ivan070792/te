@@ -11,11 +11,11 @@ class Report extends Model
 
     protected $fillable = ['status', 'report_categoty_id', 'report_user_id'];
 
-    public function ReportCtategory(){
-        return $this->belongsTo(ReportCtategory::class);
+    public function reportCategory(){
+        return $this->belongsTo(ReportCategory::class);
     }
 
-    public function ReportUser(){
+    public function reportUser(){
         return $this->belongsTo(ReportUser::class);
     }
 }

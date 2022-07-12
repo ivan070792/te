@@ -18,7 +18,7 @@ class ReportUserFactory extends Factory
     {
         return [
             'first_name' => $this->faker->firstName(),
-            'middle_name' => $this->faker->firstNameFemale(),
+            'middle_name' => $this->faker->middleName(),
             'last_name' => $this->faker->lastName(),
             'phone' => $this->faker->numerify('79#########')
         ];

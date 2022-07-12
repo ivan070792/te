@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
+use App\Models\ReportCategory;
+use App\Models\ReportUser;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -12,9 +14,10 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Report $report)
     {
-        //
+        $data = ['report' => $report->latest()->get()];
+        return view('page.report_index', $data);
     }
 
     /**
@@ -22,9 +25,19 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, Report $report)
     {
-        //
+        $data = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'phone' => $request->phone,
+            'report_category' => $request->report_category,
+            'report_text' => $request->report_text
+
+        ];
+        $report->insert();
+        return view('welcome', $data);
     }
 
     /**
@@ -44,9 +57,10 @@ class ReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show(Report $report, $report_id)
     {
-        //
+        $data = ['report' => $report->find($report_id)];
+        return view('page.report_show', $data);
     }
 
     /**
@@ -81,5 +95,17 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //
+    }
+
+    /**
+     * Show form app.
+     *
+     * @param  \App\Models\ReportCategoty  $reportCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function swow_form(ReportCategory $reportCategory){
+
+        $data = ['report_categories' => $reportCategory->latest()->get()];
+        return view('page.report_form', $data);
     }
 }

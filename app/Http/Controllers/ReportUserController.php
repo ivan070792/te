@@ -50,6 +50,20 @@ class ReportUserController extends Controller
     }
 
     /**
+     * Display the all reports from user.
+     *
+     * @param  \App\Models\ReportUser  $reportUser
+     * @return \Illuminate\Http\Response
+     */
+    public function showReports(ReportUser $reportUser, $user_id)
+    {
+        $data = [
+            'user_data' => ReportUser::find($user_id),
+        ];
+        return view('page.user_show_reports', $data);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\ReportUser  $reportUser

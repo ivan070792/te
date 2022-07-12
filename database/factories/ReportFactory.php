@@ -23,6 +23,7 @@ class ReportFactory extends Factory
             'status' => $this->faker->randomElement(['0', '1', '2']), // 0 - не обработно, 1 - в обработке, 2 - обработано
             'report_category_id' => ReportCategory::inRandomOrder()->first()->id,
             'report_user_id' => ReportUser::inRandomOrder()->first()->id,
+            'text' => $this->faker->paragraph(3),
         ];
     }
 }

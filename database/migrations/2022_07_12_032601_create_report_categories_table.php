@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('report_ctategories', function (Blueprint $table) {
+        Schema::create('report_categories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name');// Название катеогрии обращений

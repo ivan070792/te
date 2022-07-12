@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('report_users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name', 50); //Имя
-            $table->string('last_name', 50);//Фамилия
-            $table->string('middle_name', 50);//Отчество
-            $table->string('phone', 11);
+            $table->string('first_name', 50);// Имя
+            $table->string('last_name', 50);// Фамилия
+            $table->string('middle_name', 50);// Отчество
+            $table->string('phone', 11);// Номер телефона
             $table->timestamps();
         });
     }

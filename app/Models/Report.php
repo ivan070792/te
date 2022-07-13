@@ -18,4 +18,8 @@ class Report extends Model
     public function reportUser(){
         return $this->belongsTo(ReportUser::class);
     }
+
+    public function hospital(){
+        return $this->belongsTo(Hospital::class);
+    }
 }

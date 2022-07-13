@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Report;
 use App\Models\ReportCategory;
 use App\Models\ReportUser;
+use App\Models\Hospital;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Hospital::factory(5)->create();
         ReportCategory::factory(5)->create();
         ReportUser::factory(15)->create();
         Report::factory(50)->create();

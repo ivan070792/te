@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hospital;
 use App\Models\Report;
 use App\Models\ReportCategory;
 use App\Models\ReportUser;
@@ -103,9 +104,12 @@ class ReportController extends Controller
      * @param  \App\Models\ReportCategoty  $reportCategory
      * @return \Illuminate\Http\Response
      */
-    public function swow_form(ReportCategory $reportCategory){
+    public function swow_form(ReportCategory $reportCategory, Hospital $hospital){
 
-        $data = ['report_categories' => $reportCategory->latest()->get()];
+        $data = [
+            'report_categories' => $reportCategory->latest()->get(),
+            'hospitals' => $hospital->latest()->get(),
+        ];
         return view('page.report_form', $data);
     }
 }

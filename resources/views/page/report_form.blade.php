@@ -40,14 +40,14 @@
                         @endforeach
                       </select>
                 </div>
-                {{-- <div class="col-12">
+                <div class="col-12">
                     <select class="form-select" aria-label="Выберите поликлинику" required>
                         <option selected>Выберите поликлинику</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                </div> --}}
+                        @foreach ($hospitals as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="col-12 mb-3">
                     <label for="report" class="form-label">Содержание сообщения</label>
                     <textarea class="form-control" id="report" name="report_text" rows="3" required></textarea>

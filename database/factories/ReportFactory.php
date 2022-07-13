@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Hospital;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\ReportCategory;
@@ -23,6 +24,7 @@ class ReportFactory extends Factory
             'status' => $this->faker->randomElement(['0', '1', '2']), // 0 - не обработно, 1 - в обработке, 2 - обработано
             'report_category_id' => ReportCategory::inRandomOrder()->first()->id,
             'report_user_id' => ReportUser::inRandomOrder()->first()->id,
+            'hospital_id' => Hospital::inRandomOrder()->first()->id,
             'text' => $this->faker->paragraph(3),
         ];
     }

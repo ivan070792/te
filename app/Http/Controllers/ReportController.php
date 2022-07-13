@@ -26,19 +26,14 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Report $report)
+    public function create(Request $request, Report $report, ReportCategory $reportCategory, Hospital $hospital)
     {
+    
         $data = [
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'middle_name' => $request->middle_name,
-            'phone' => $request->phone,
-            'report_category' => $request->report_category,
-            'report_text' => $request->report_text
-
+            'report_categories' => $reportCategory->latest()->get(),
+            'hospitals' => $hospital->latest()->get(),
         ];
-        $report->insert();
-        return view('welcome', $data);
+        return view('page.report_form', $data);
     }
 
     /**
@@ -47,9 +42,67 @@ class ReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ReportUser $reportUser)
     {
-        //
+        $user = $reportUser->where('phone', '=', $request->phone)->get()->first();
+
+        if($user){
+            $user = $reportUser::find($user->id);
+
+            $user->report()->create([
+                'report_user_id'=>$user->id,
+                'report_category_id' => $request->report_category,
+                'text' => $request->report_text,
+                'hospital_id' => $request->hospital,
+                'status' => 0,
+            ]);
+            return redirect()->route('report_index');
+        }else{
+            $user = $reportUser->create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'middle_name' => $request->middle_name,
+                'phone' => $request->phone,
+            ]);
+            $user->report()->create([
+                'report_user_id'=>$user->id,
+                'report_category_id' => $request->report_category,
+                'text' => $request->report_text,
+                'hospital_id' => $request->hospital,
+                'status' => 0,
+            ]);
+            return redirect()->route('report_index');
+        }
+
+
+        $data = [
+            // 'first_name' => $request->first_name,
+            // 'last_name' => $request->last_name,
+            // 'middle_name' => $request->middle_name,
+            // 'phone' => $request->phone,
+            // 'report_category' => $request->report_category,
+            // 'report_text' => $request->report_text,
+            // 'hospital' => $request->hospital,
+            'user' => $user->id
+        ];
+
+        //$reportUser->where('phone', '=', $request->phone)->first();
+
+        // $user = $reportUser::find(1);
+
+        // $user->report()->create([
+        //     'first_name' => $request->first_name,
+        //     // 'last_name' => $request->last_name,
+        //     // 'middle_name' => $request->middle_name,
+        //     // 'phone' => $request->phone,
+        //     'report_category_id' => $request->report_category,
+        //     'text' => $request->report_text,
+        //     'hospital_id' => $request->hospital,
+        //     'status' => 0,
+        // ]);
+
+        //$report->insert();
+        return view('welcome', $data);
     }
 
     /**
@@ -98,18 +151,12 @@ class ReportController extends Controller
         //
     }
 
-    /**
-     * Show form app.
-     *
-     * @param  \App\Models\ReportCategoty  $reportCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function swow_form(ReportCategory $reportCategory, Hospital $hospital){
+    // public function swow_form(ReportCategory $reportCategory, Hospital $hospital){
 
-        $data = [
-            'report_categories' => $reportCategory->latest()->get(),
-            'hospitals' => $hospital->latest()->get(),
-        ];
-        return view('page.report_form', $data);
-    }
+    //     $data = [
+    //         'report_categories' => $reportCategory->latest()->get(),
+    //         'hospitals' => $hospital->latest()->get(),
+    //     ];
+    //     return view('page.report_form', $data);
+    // }
 }

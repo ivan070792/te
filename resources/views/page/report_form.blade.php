@@ -4,7 +4,7 @@
 <div class="row justify-content-center">
     <div class="col-md7 col-lg-8">
         <h1 class="text-center">Форма обратной связи</h1>
-        <form action="{{ route('create_report') }}" method="post">
+        <form action="{{ route('create_new_report') }}" method="post">
             @csrf
             <div class="row gy-3">
                 <div class="col-sm-6">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <select class="form-select" name="report_catrgory" aria-label="Выберите категорию обращения" required>
+                    <select class="form-select" name="report_category" aria-label="Выберите категорию обращения" required>
                         <option selected>Выберите категорию обращения</option>
                         @foreach ($report_categories as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -41,7 +41,7 @@
                       </select>
                 </div>
                 <div class="col-12">
-                    <select class="form-select" aria-label="Выберите поликлинику" required>
+                    <select class="form-select" name="hospital" aria-label="Выберите поликлинику" required>
                         <option selected>Выберите поликлинику</option>
                         @foreach ($hospitals as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>

@@ -21,6 +21,10 @@
         </style>
     </head>
     <body class="antialiased">
-        {{ var_dump($first_name) }}
+        {{-- @foreach ($user as $item)
+        {{ var_dump($item->id) }}
+        @endforeach --}}
+        {{ var_dump($user) }}
+       
     </body>
 </html>

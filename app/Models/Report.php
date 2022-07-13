@@ -9,7 +9,7 @@ class Report extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status', 'report_categoty_id', 'report_user_id'];
+    protected $fillable = ['status', 'report_category_id', 'report_user_id', 'hospital_id', 'text'];
 
     public function reportCategory(){
         return $this->belongsTo(ReportCategory::class);

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('report_category_id');
             $table->foreignId('report_user_id');
+            $table->foreignId('hospital_id');
             $table->text('text');
             $table->string('status'); // Статус обработки обращения
 

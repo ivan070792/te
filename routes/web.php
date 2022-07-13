@@ -19,5 +19,5 @@ use App\Http\Controllers\ReportUserController;
 Route::get('/reports', [ReportController::class, 'index'])->name('report_index');
 Route::get('/report/{report_id}', [ReportController::class, 'show'])->name('show_report');
 Route::get('/user/{user_id}/reports', [ReportUserController::class, 'showReports'])->name('user_show_reports');
-Route::post('/', [ReportController::class, 'create'])->name('create_report');
-Route::get('/', [ReportController::class, 'swow_form'])->name('swow_form');
+Route::post('/', [ReportController::class, 'store'])->name('create_new_report');
+Route::get('/', [ReportController::class, 'create'])->name('show_create_report_form');

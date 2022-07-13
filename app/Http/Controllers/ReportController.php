@@ -49,14 +49,14 @@ class ReportController extends Controller
         if($user){
             $user = $reportUser::find($user->id);
 
-            $user->report()->create([
+            $report = $user->report()->create([
                 'report_user_id'=>$user->id,
                 'report_category_id' => $request->report_category,
                 'text' => $request->report_text,
                 'hospital_id' => $request->hospital,
                 'status' => 0,
             ]);
-            return redirect()->route('report_index');
+            return redirect()->route('report_success')->with('report_id', $report->id);
         }else{
             $user = $reportUser->create([
                 'first_name' => $request->first_name,
@@ -64,14 +64,14 @@ class ReportController extends Controller
                 'middle_name' => $request->middle_name,
                 'phone' => $request->phone,
             ]);
-            $user->report()->create([
+            $report = $user->report()->create([
                 'report_user_id'=>$user->id,
                 'report_category_id' => $request->report_category,
                 'text' => $request->report_text,
                 'hospital_id' => $request->hospital,
                 'status' => 0,
             ]);
-            return redirect()->route('report_index');
+            return redirect()->route('report_success')->with('report_id', $report->id);
         }
     }
 
@@ -121,12 +121,4 @@ class ReportController extends Controller
         //
     }
 
-    // public function swow_form(ReportCategory $reportCategory, Hospital $hospital){
-
-    //     $data = [
-    //         'report_categories' => $reportCategory->latest()->get(),
-    //         'hospitals' => $hospital->latest()->get(),
-    //     ];
-    //     return view('page.report_form', $data);
-    // }
 }

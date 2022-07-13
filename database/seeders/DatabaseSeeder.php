@@ -9,6 +9,7 @@ use App\Models\Report;
 use App\Models\ReportCategory;
 use App\Models\ReportUser;
 use App\Models\Hospital;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +24,10 @@ class DatabaseSeeder extends Seeder
         ReportCategory::factory(5)->create();
         ReportUser::factory(15)->create();
         Report::factory(50)->create();
+        User::insert([
+            'name' => 'admin',
+            'email' => '1@mail.ru',
+            'password' => bcrypt('admin'),
+        ]);
     }
 }

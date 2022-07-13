@@ -17,7 +17,7 @@ class HospitalFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->sentence(3),
+            'name' => $this->faker->numerify('Поликлиника ##'),
             'description' => $this->faker->paragraph(2),
         ];
     }

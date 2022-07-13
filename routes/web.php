@@ -16,8 +16,13 @@ use App\Http\Controllers\ReportUserController;
 */
 
 
-Route::get('/reports', [ReportController::class, 'index'])->name('report_index');
-Route::get('/report/{report_id}', [ReportController::class, 'show'])->name('show_report');
-Route::get('/user/{user_id}/reports', [ReportUserController::class, 'showReports'])->name('user_show_reports');
-Route::post('/', [ReportController::class, 'store'])->name('create_new_report');
-Route::get('/', [ReportController::class, 'create'])->name('show_create_report_form');
+Route::post('/', [ReportController::class, 'store'])->name('create_new_report'); // Обработка данных из формы
+Route::get('/', [ReportController::class, 'create'])->name('show_create_report_form'); // Начальная форма
+
+Auth::routes();
+
+Route::get('/reports', [ReportController::class, 'index'])->name('report_index'); // Все обращения
+Route::get('/report/{report_id}', [ReportController::class, 'show'])->name('show_report'); // Обращение
+Route::get('/report/{report_id}/edit', [ReportController::class, 'show'])->name('edit_report'); // Редактирования обращения
+Route::get('/user/{user_id}/reports', [ReportUserController::class, 'showReports'])->name('user_show_reports'); // Обращения пользователя
+

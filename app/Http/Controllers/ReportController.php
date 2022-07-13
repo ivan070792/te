@@ -73,36 +73,6 @@ class ReportController extends Controller
             ]);
             return redirect()->route('report_index');
         }
-
-
-        $data = [
-            // 'first_name' => $request->first_name,
-            // 'last_name' => $request->last_name,
-            // 'middle_name' => $request->middle_name,
-            // 'phone' => $request->phone,
-            // 'report_category' => $request->report_category,
-            // 'report_text' => $request->report_text,
-            // 'hospital' => $request->hospital,
-            'user' => $user->id
-        ];
-
-        //$reportUser->where('phone', '=', $request->phone)->first();
-
-        // $user = $reportUser::find(1);
-
-        // $user->report()->create([
-        //     'first_name' => $request->first_name,
-        //     // 'last_name' => $request->last_name,
-        //     // 'middle_name' => $request->middle_name,
-        //     // 'phone' => $request->phone,
-        //     'report_category_id' => $request->report_category,
-        //     'text' => $request->report_text,
-        //     'hospital_id' => $request->hospital,
-        //     'status' => 0,
-        // ]);
-
-        //$report->insert();
-        return view('welcome', $data);
     }
 
     /**

@@ -3,6 +3,15 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md7 col-lg-8">
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <h1 class="text-center">Форма обратной связи</h1>
         <form action="{{ route('create_new_report') }}" method="post">
             @csrf

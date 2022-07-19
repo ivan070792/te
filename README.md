@@ -25,3 +25,7 @@ domain.com/login
 
 email: 1@mail.ru
 pass: admin
+
+Для просмора всех обращений 
+
+domain.com/reports

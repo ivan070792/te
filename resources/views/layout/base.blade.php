@@ -36,13 +36,13 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Авторизационные ссылки -->
                         @guest
-                            {{-- @if (Route::has('login'))
+                            @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">Войти</a>
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
+                            {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
@@ -59,6 +59,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         Выйти
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('report_index') }}">Все обращения</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

@@ -32,5 +32,6 @@ Route::get('/success', function(Request $request){
     
 })->name('report_success');
 Route::get('/report/{report_id}', [ReportController::class, 'show'])->name('show_report')->middleware('auth'); // Обращение
+Route::post('/report/{report_id?}', [ReportController::class, 'change_status'])->name('change_status_report')->middleware('auth');
 //Route::get('/report/{report_id}/edit', [ReportController::class, 'show'])->name('edit_report')->middleware('auth'); // Редактирования обращения
 Route::get('/user/{user_id}/reports', [ReportUserController::class, 'showReports'])->name('user_show_reports')->middleware('auth'); // Обращения пользователя

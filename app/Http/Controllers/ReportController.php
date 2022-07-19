@@ -45,10 +45,18 @@ class ReportController extends Controller
     public function store(Request $request, ReportUser $reportUser)
     {
         $user = $reportUser->where('phone', '=', $request->phone)->get()->first();
-
+        $validatedData = $request->validate([
+            'report_category' => 'required|integer',
+            'report_text' => 'max:255|required',
+            'hospital' => 'required|integer',
+            'first_name' => 'max:50|required',
+            'last_name' => 'max:50|required',
+            'middle_name' => 'max:50|required',
+            'phone' => 'required|numeric|digits:10'
+        ]);
         if($user){
             $user = $reportUser::find($user->id);
-
+            
             $report = $user->report()->create([
                 'report_user_id'=>$user->id,
                 'report_category_id' => $request->report_category,

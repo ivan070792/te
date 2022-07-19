@@ -46,9 +46,9 @@ class ReportController extends Controller
     {
         $user = $reportUser->where('phone', '=', $request->phone)->get()->first();
         $validatedData = $request->validate([
-            'report_category' => 'required|integer',
+            'report_category' => 'required|integer|gt:0',
             'report_text' => 'max:255|required',
-            'hospital' => 'required|integer',
+            'hospital' => 'required|integer|gt:0',
             'first_name' => 'max:50|required',
             'last_name' => 'max:50|required',
             'middle_name' => 'max:50|required',
@@ -82,6 +82,7 @@ class ReportController extends Controller
             return redirect()->route('report_success')->with('report_id', $report->id);
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -127,6 +128,21 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //
+    }
+
+    /**
+     * Shange status report.
+     *
+     * @param  \App\Models\Report  $report
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function change_status(Report $report, Request $request){
+        $status = $request->status;
+        $item = $report->find($request->report_id)->update(['status'=> $status]);
+        $data = ['report' => $report->find($request->report_id)];
+        return redirect()->route('show_report', ['report_id' => $request->report_id]);
+        // return view('page.report_show', $data);
     }
 
 }

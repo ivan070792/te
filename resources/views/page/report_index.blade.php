@@ -11,7 +11,22 @@
                       <h5 class="card-title"><a href="{{ route('user_show_reports', ['user_id' => $item->reportUser->id]) }}">{{$item->reportUser->last_name}} (+{{$item->reportUser->phone}})</a></h5>
                       <h6 class="card-subtitle mb-2 text-muted">Номер обращения: {{$item->id}}</h6>
                       <h6 class="card-subtitle mb-2 text-muted">Категория: {{$item->reportCategory->name}}</h6>
-                      <h6 class="card-subtitle mb-2 text-muted">Статус: {{$item->status}}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">
+                        Статус: 
+                        @switch($item->status)
+                            @case(0)
+                                Не обработано
+                                @break
+                            @case(1)
+                                В обработке
+                                @break
+                            @case(2)
+                                Обработано
+                                @break
+                            @default
+                            Ошибка    
+                        @endswitch
+                      </h6>
                       <p class="card-text">{{$item->text}}</p>
                       {{-- <a href="#" class="card-link">Card link</a>
                       <a href="#" class="card-link">Another link</a> --}}

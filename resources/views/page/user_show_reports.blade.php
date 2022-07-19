@@ -11,6 +11,9 @@
                     <h6 class="card-subtitle mb-2 text-muted">Категория: {{$item->reportCategory->name}}</h6>
                     <p class="card-text">{{$item->text}}</p>
                 </div>
+                <div class="card-footer text-muted">
+                    <a class="btn btn-success w-100 m-1" href="{{ route('show_report', ['report_id' => $item->id]) }}">Подробнее</a>
+                </div>
             </div>
         </div>
         @endforeach

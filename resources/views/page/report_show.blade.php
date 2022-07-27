@@ -4,6 +4,14 @@
     <div class="row g-1">
         <h1>Обращение № {{ $report->id}} от {{ $report->reportUser->first_name }} {{ $report->reportUser->last_name }} ({{ $report->reportUser->phone }})</h1>
         <div class="col-md-12">
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            @endif
             <div class="card p-0 h-100">
                 <div class="card-body">
                   <div class="container">

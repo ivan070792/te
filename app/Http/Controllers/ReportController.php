@@ -15,9 +15,21 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Report $report)
+    public function index(Report $report, ReportCategory $reportCategory, Request $request)
     {
-        $data = ['report' => $report->latest()->get()];
+
+        
+        $reports = $report->latest();
+
+        // Сортировка
+        if(($request->filled('status') && $request->status != '-1')) $reports->where('status', $request->status);
+        if($request->filled('category') && $request->category != 'all') $reports->where('report_category_id', $request->category);
+        
+        $data = [
+            'reports' => $reports->paginate(15),
+            'categories' => $reportCategory->get(),
+        ];
+        
         return view('page.report_index', $data);
     }
 
@@ -141,7 +153,7 @@ class ReportController extends Controller
         $status = $request->status;
         $item = $report->find($request->report_id)->update(['status'=> $status]);
         $data = ['report' => $report->find($request->report_id)];
-        return redirect()->route('show_report', ['report_id' => $request->report_id]);
+        return redirect()->route('show_report', ['report_id' => $request->report_id])->with('success', 1);
         // return view('page.report_show', $data);
     }
 

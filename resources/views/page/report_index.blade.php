@@ -1,7 +1,7 @@
 @extends('layout.base')
 
 @section('content')
-
+        {{var_dump($myclass);}}
         <div class="row g-1">
             <h1>Все обращения</h1>
             @foreach ($report as $item)
@@ -12,7 +12,7 @@
                       <h6 class="card-subtitle mb-2 text-muted">Номер обращения: {{$item->id}}</h6>
                       <h6 class="card-subtitle mb-2 text-muted">Категория: {{$item->reportCategory->name}}</h6>
                       <h6 class="card-subtitle mb-2 text-muted">
-                        Статус: 
+                        Статус:
                         @switch($item->status)
                             @case(0)
                                 Не обработано

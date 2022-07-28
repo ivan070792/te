@@ -2,7 +2,7 @@
 
 @section('content')
         <div class="row g-1">
-            <h1>Все обращения</h1>
+            <h1>__('report_index_title')</h1>
             <div class="container">
                 <div class="row">
                     <form method="get" action="{{ route('report_index') }}" class="d-flex">

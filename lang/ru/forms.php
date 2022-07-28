@@ -16,6 +16,6 @@ return [
     'report_status_title' => 'Статус обращения',
     'report_category_title' => 'Категория обращения',
     'filter_button' => 'Фильтр',
-    'filter_clear_button' => 'Отчитсить'
-
+    'filter_clear_button' => 'Отчитсить',
+    'report_index_title' => 'Все обращения пользователей',
 ];
